@@ -9,12 +9,41 @@ const initialOrder = {
   name: '',
   size: '',
   sauce: '',
-  toppings: '',
+  topping1: false,
+  topping2: false,
+  topping3: false,
+  topping4: false,
+  topping5: false,
+  topping6: false,
   special: '',
 }
 
 const App = () => {
-  const [orders, setOrders] = useState([initialOrder]);
+  const [orders, setOrders] = useState(initialOrder);
+  const history = useHistory();
+
+  const updateOrder = (inputName, inputValue) => {
+    setOrders({
+      ...orders,
+      [inputName]: inputValue
+    });
+  }
+
+  const submitForm = () => {
+    const newOrder = {
+      name: orders.name.trim(),
+      size: orders.size,
+      sauce: orders.sauce,
+      topping1: orders.topping1,
+      topping2: orders.topping2,
+      topping3: orders.topping3,
+      topping4: orders.topping4,
+      topping5: orders.topping5,
+      topping6: orders.topping6,
+      special: orders.special.trim()
+    }
+    setOrders(orders.concat(newOrder));
+  }
 
   return (
     <>
