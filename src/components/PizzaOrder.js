@@ -9,6 +9,7 @@ export default function PizzaOrder(props) {
 
   return (
     <div className='order-container'>
+      <h2>Order confirmed! Pizza is on its way.</h2>
       <p>Order name: {details.name}</p>
       <p>Pizza size: {details.size}</p>
       <p>Sauce: {details.sauce}</p>

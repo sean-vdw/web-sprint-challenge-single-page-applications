@@ -1,24 +1,28 @@
 import React, { useState, useEffect } from "react";
-import ReactDOM from 'react-router-dom';
-import { Route, Link, useHistory } from 'react-router-dom';
-import axios from "axios";
+import { Route, Link } from 'react-router-dom';
+import * as yup from 'yup';
 
 //Import Components
 import PizzaForm from "./components/PizzaForm";
 import PizzaOrder from "./components/PizzaOrder";
-import schema from "./components/FormSchema";
+import schema from "./validate/FormSchema";
 
 const initialFormValues = {
   name: '',
   size: '',
   sauce: '',
-  topping1: false,
-  topping2: false,
-  topping3: false,
-  topping4: false,
-  topping5: false,
-  topping6: false,
+  Sausage: false,
+  Mushrooms: false,
+  Peppers: false,
+  Salami: false,
+  Jalapenos: false,
+  Pineapple: false,
   special: '',
+}
+
+const initialFormErrors = {
+  name: '',
+  size: '',
 }
 
 const initialDisabled = true;
@@ -26,15 +30,8 @@ const initialDisabled = true;
 const App = () => {
   const [orders, setOrders] = useState([]);
   const [formValues, setFormValues] = useState(initialFormValues);
+  const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(initialDisabled);
-  const history = useHistory();
-
-  const updateForm = (inputName, inputValue) => {
-    setFormValues({
-      ...formValues,
-      [inputName]: inputValue
-    });
-  }
 
   const submitForm = () => {
     const newOrder = {
@@ -46,6 +43,21 @@ const App = () => {
     }
     setOrders(orders.concat(newOrder));
     setFormValues(initialFormValues);
+  }
+
+  const validate = (name, value) => {
+    yup.reach(schema, name)
+      .validate(value)
+      .then(() => setFormErrors({ ...formErrors, [name]: '' }))
+      .catch(err => setFormErrors({ ...formErrors, [name]: err.errors[0] }))
+  }
+
+  const updateForm = (inputName, inputValue) => {
+    validate(inputName, inputValue);
+    setFormValues({
+      ...formValues,
+      [inputName]: inputValue
+    });
   }
 
   useEffect(() => {
@@ -73,9 +85,10 @@ const App = () => {
           values={formValues}
           update={updateForm}
           submit={submitForm}
+          disabled={disabled}
+          errors={formErrors}
         />
       </Route>
-      <h2>My Order:</h2>
       {
         orders.map((order, idx) => {
           return (
