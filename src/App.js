@@ -4,6 +4,9 @@ import { Route, Link, useHistory } from 'react-router-dom';
 import axios from "axios";
 
 //Import Components
+import PizzaForm from "./components/PizzaForm";
+import PizzaOrder from "./components/PizzaOrder";
+import schema from "./components/FormSchema";
 
 const initialFormValues = {
   name: '',
@@ -18,9 +21,12 @@ const initialFormValues = {
   special: '',
 }
 
+const initialDisabled = true;
+
 const App = () => {
   const [orders, setOrders] = useState([]);
   const [formValues, setFormValues] = useState(initialFormValues);
+  const [disabled, setDisabled] = useState(initialDisabled);
   const history = useHistory();
 
   const updateForm = (inputName, inputValue) => {
@@ -47,6 +53,10 @@ const App = () => {
     setFormValues(initialFormValues);
   }
 
+  useEffect(() => {
+    schema.isValid(formValues).then(valid => setDisabled(!valid))
+  }, [formValues]);
+
   return (
     <>
 
@@ -55,7 +65,6 @@ const App = () => {
         <nav>
           <Link to='/'>Home</Link>
           <Link to='/pizza'>Order Pizza</Link>
-          <Link to='/order'>My Order</Link>
         </nav>
         <div className='hero'>
           <h1>Pizza Delivery for Coders &#127829;</h1>
@@ -64,19 +73,23 @@ const App = () => {
           </Link>
         </div>
       </header>
-      <div className='cta'>
-          <h2>Pizza delivery to you in <span>60 seconds.</span></h2>
-          <p>Because coding is better when you're not hungry.</p>
-          <Link to='/pizza'>
-            <button className='order-pizza'>Order Now</button>
-          </Link>
-      </div>
       <Route path='/pizza'>
-
+        <PizzaForm 
+          values={formValues}
+          update={updateForm}
+          submit={submitForm}
+        />
       </Route>
-      <Route path='/order'>
-
-      </Route>
+      <h2>My Order:</h2>
+      {
+        orders.map((order, idx) => {
+          return (
+            <div className='ordered-container'>
+              <PizzaOrder key={idx} details={order}/>
+            </div>
+          )
+        })
+      }
     </div>
 
     </>

@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function PizzaForm(props) {
-  const { values, update, submit } = props;
+  const { values, update, submit, disabled } = props;
 
   const onChange = evt => {
     const { name, value, checked, type } = evt.target;
@@ -16,16 +16,9 @@ export default function PizzaForm(props) {
 
   return (
     <>
-      <header>
-        <nav>
-          <Link to='/'>Home</Link>
-          <Link to='/pizza'>Order Pizza</Link>
-          <Link to='/order'>My Order</Link>
-        </nav>
       <div className='order-header'>
         <h1>Order a Pie!</h1>
       </div>
-      </header>
       <form id='pizza=form' onSubmit={onSubmit}>
         <div className='form-group'>
           <h2>Order Form</h2>
