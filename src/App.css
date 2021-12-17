@@ -105,3 +105,13 @@ input, select {
   border: 1px solid #9c9c9c;
   padding: 2% 3%;
 }
+
+button {
+  font-size: 1.1rem;
+  padding: 10px 40px;
+}
+
+#order-pizza {
+  background-color: #af0000;
+  color: #fff;
+}
