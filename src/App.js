@@ -1,6 +1,7 @@
 import './App.css';
 import React, { useState, useEffect } from "react";
 import { Route, Link } from 'react-router-dom';
+import axios from 'axios';
 import * as yup from 'yup';
 
 //Import Components
@@ -34,6 +35,19 @@ const App = () => {
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(initialDisabled);
 
+  const postNewOrder = newOrder => {
+    axios.post('https://reqres.in/api/orders', newOrder)
+      .then(res => {
+        setOrders([ res.data, ...orders ])
+      })
+      .catch(err => {
+        console.error(err);
+      })
+      .finally(() => {
+        setFormValues(initialFormValues);
+      })
+  }
+
   const submitForm = () => {
     const newOrder = {
       name: formValues.name.trim(),
@@ -42,8 +56,7 @@ const App = () => {
       toppings: ['Sausage', 'Mushrooms', 'Peppers', 'Salami', 'Jalapenos', 'Pineapple'].filter(topping => !!formValues[topping]),
       special: formValues.special.trim()
     }
-    setOrders(orders.concat(newOrder));
-    setFormValues(initialFormValues);
+    postNewOrder(newOrder);
   }
 
   const validate = (name, value) => {
