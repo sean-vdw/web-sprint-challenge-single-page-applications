@@ -110,7 +110,7 @@ const App = () => {
         orders.map((order, idx) => {
           return (
             <div className='ordered-container'>
-              <PizzaOrder key={order.idx} details={order}/>
+              <PizzaOrder key={idx} details={order}/>
             </div>
           )
         })
