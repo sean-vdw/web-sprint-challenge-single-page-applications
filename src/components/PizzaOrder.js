@@ -12,13 +12,15 @@ export default function PizzaOrder(props) {
       <p>Order name: {details.name}</p>
       <p>Pizza size: {details.size}</p>
       <p>Sauce: {details.sauce}</p>
-      <p>Optional toppings:</p>
-      <p>{details.topping1}</p>
-      <p>{details.topping2}</p>
-      <p>{details.topping3}</p>
-      <p>{details.topping4}</p>
-      <p>{details.topping5}</p>
-      <p>{details.topping6}</p>
+      {
+        !!details.toppings && !!details.toppings.length &&
+        <div>
+          Added Toppings:
+          <ul>
+            {details.toppings.map((like, idx) => <li key={idx}>{like}</li>)}
+          </ul>
+        </div>
+      }
       <p>Special instructions: {details.special}</p>
     </div>
   )

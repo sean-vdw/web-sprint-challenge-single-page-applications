@@ -41,12 +41,7 @@ const App = () => {
       name: formValues.name.trim(),
       size: formValues.size,
       sauce: formValues.sauce,
-      topping1: formValues.topping1,
-      topping2: formValues.topping2,
-      topping3: formValues.topping3,
-      topping4: formValues.topping4,
-      topping5: formValues.topping5,
-      topping6: formValues.topping6,
+      toppings: ['Sausage', 'Mushrooms', 'Peppers', 'Salami', 'Jalapenos', 'Pineapple'].filter(topping => !!formValues[topping]),
       special: formValues.special.trim()
     }
     setOrders(orders.concat(newOrder));
@@ -85,7 +80,7 @@ const App = () => {
         orders.map((order, idx) => {
           return (
             <div className='ordered-container'>
-              <PizzaOrder key={idx} details={order}/>
+              <PizzaOrder key={order.idx} details={order}/>
             </div>
           )
         })

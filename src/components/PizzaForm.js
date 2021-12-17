@@ -56,7 +56,7 @@ export default function PizzaForm(props) {
               <input 
                 value={values.topping1}
                 onChange={onChange}
-                name='topping1'
+                name='Sausage'
                 type='checkbox'
               />
             </label>
@@ -64,7 +64,7 @@ export default function PizzaForm(props) {
               <input 
                 value={values.topping2}
                 onChange={onChange}
-                name='topping2'
+                name='Mushrooms'
                 type='checkbox'
               />
             </label>
@@ -72,7 +72,7 @@ export default function PizzaForm(props) {
               <input 
                 value={values.topping3}
                 onChange={onChange}
-                name='topping3'
+                name='Peppers'
                 type='checkbox'
               />
             </label>
@@ -80,7 +80,7 @@ export default function PizzaForm(props) {
               <input 
                 value={values.topping4}
                 onChange={onChange}
-                name='topping4'
+                name='Salami'
                 type='checkbox'
               />
             </label>
@@ -88,7 +88,7 @@ export default function PizzaForm(props) {
               <input 
                 value={values.topping5}
                 onChange={onChange}
-                name='topping5'
+                name='Jalapenos'
                 type='checkbox'
               />
             </label>
@@ -96,7 +96,7 @@ export default function PizzaForm(props) {
               <input 
                 value={values.topping6}
                 onChange={onChange}
-                name='topping6'
+                name='Pineapple'
                 type='checkbox'
               />
             </label>
