@@ -1,3 +1,4 @@
+import './App.css';
 import React, { useState, useEffect } from "react";
 import { Route, Link } from 'react-router-dom';
 import * as yup from 'yup';
@@ -70,8 +71,11 @@ const App = () => {
     <div className='lambdaEats'>
       <header>
         <nav>
-          <Link to='/'>Home</Link>
-          <Link to='/pizza'>Order Pizza</Link>
+          <p>Lambda Eats</p>
+          <div className='link-wrapper'>
+            <Link to='/'>Home</Link>
+            <Link to='/pizza'>Order Pizza</Link>
+          </div>
         </nav>
         <div className='hero'>
           <h1>Pizza Delivery for Coders &#127829;</h1>

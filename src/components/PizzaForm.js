@@ -17,16 +17,16 @@ export default function PizzaForm(props) {
   return (
     <>
       <div className='order-header'>
-        <h1>Order a Pie!</h1>
+        <h2>Order a Pie!</h2>
       </div>
       <form id='pizza-form' onSubmit={onSubmit}>
         <div className='form-group'>
-          <h2>Order Form</h2>
+          <h3>Order Form</h3>
           <div className='errors'>
             <div>{errors.name}</div>
             <div>{errors.size}</div>
           </div>
-          <label>Name
+          <label>Name<br/>
             <input
               id='name-input' 
               name='name'
@@ -36,7 +36,7 @@ export default function PizzaForm(props) {
               onChange={onChange}
             />
           </label>
-          <label>Size
+          <label>Size<br/>
             <select value={values.size} name='size' id='size-dropdown' onChange={onChange}>
               <option value=''> - Select a Size - </option>
               <option value='small'>Small</option>
@@ -45,7 +45,7 @@ export default function PizzaForm(props) {
               <option value='xl'>X-Large</option>
             </select>
           </label>
-          <label>Sauce
+          <label>Sauce<br/>
             <select value={values.sauce} name='sauce' onChange={onChange}>
               <option value=''> - Select a sauce - </option>
               <option value='marinara'>Marinara</option>
