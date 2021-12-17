@@ -76,7 +76,7 @@ const App = () => {
         <div className='hero'>
           <h1>Pizza Delivery for Coders &#127829;</h1>
           <Link to='/pizza'>
-            <button className='order-pizza'>Order Now</button>
+            <button id='order-pizza'>Order Now</button>
           </Link>
         </div>
       </header>

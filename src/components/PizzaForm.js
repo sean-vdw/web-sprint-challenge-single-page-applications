@@ -19,7 +19,7 @@ export default function PizzaForm(props) {
       <div className='order-header'>
         <h1>Order a Pie!</h1>
       </div>
-      <form id='pizza=form' onSubmit={onSubmit}>
+      <form id='pizza-form' onSubmit={onSubmit}>
         <div className='form-group'>
           <h2>Order Form</h2>
           <div className='errors'>
@@ -115,7 +115,7 @@ export default function PizzaForm(props) {
               onChange={onChange}
             />
           </label>
-          <button id='order-button' disabled={disabled}>Submit Order</button>
+          <button id='order-button' disabled={disabled}>Add to Order</button>
         </div>
       </form>
     </>
