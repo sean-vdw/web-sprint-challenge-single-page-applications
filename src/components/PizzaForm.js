@@ -1,0 +1,127 @@
+import React from 'react';
+
+export default function PizzaForm(props) {
+  const { values, update, submit } = props;
+
+  const onChange = evt => {
+    const { name, value, checked, type } = evt.target;
+    const valueToUse = type === 'checkbox' ? checked : value;
+    update(name, valueToUse);
+  }
+
+  const onSubmit = evt => {
+    evt.preventDefault();
+    submit();
+  }
+
+  return (
+    <>
+      <header>
+        <nav>
+          <Link to='/'>Home</Link>
+          <Link to='/pizza'>Order Pizza</Link>
+          <Link to='/order'>My Order</Link>
+        </nav>
+      <div className='order-header'>
+        <h1>Order a Pie!</h1>
+      </div>
+      </header>
+      <form id='pizza=form' onSubmit={onSubmit}>
+        <div className='form-group'>
+          <h2>Order Form</h2>
+          <label>Name
+            <input
+              id='name-input' 
+              name='name'
+              type='text'
+              placeholder='Enter order name'
+              value={values.name}
+              onChange={onChange}
+            />
+          </label>
+          <label>Size
+            <select value={values.size} name='size' id='size-dropdown' onChange={onChange}>
+              <option value=''> - Select a Size - </option>
+              <option value='small'>Small</option>
+              <option value='medium'>Medium</option>
+              <option value='large'>Large</option>
+              <option value='xl'>X-Large</option>
+            </select>
+          </label>
+          <label>Sauce
+            <select value={values.sauce} name='sauce' onChange={onChange}>
+              <option value=''> - Select a sauce - </option>
+              <option value='marinara'>Marinara</option>
+              <option value='garlic'>Garlic</option>
+              <option value='white'>White</option>
+              <option value='squidInk'>Squid Ink</option>
+            </select>
+          </label>
+          <p>Choose your toppings:</p>
+          <div className='sauce-container'>
+            <label>Sausage
+              <input 
+                value={values.topping1}
+                onChange={onChange}
+                name='topping1'
+                type='checkbox'
+              />
+            </label>
+            <label>Mushrooms
+              <input 
+                value={values.topping2}
+                onChange={onChange}
+                name='topping2'
+                type='checkbox'
+              />
+            </label>
+            <label>Peppers
+              <input 
+                value={values.topping3}
+                onChange={onChange}
+                name='topping3'
+                type='checkbox'
+              />
+            </label>
+            <label>Salami
+              <input 
+                value={values.topping4}
+                onChange={onChange}
+                name='topping4'
+                type='checkbox'
+              />
+            </label>
+            <label>Jalapenos
+              <input 
+                value={values.topping5}
+                onChange={onChange}
+                name='topping5'
+                type='checkbox'
+              />
+            </label>
+            <label>Pineapple
+              <input 
+                value={values.topping6}
+                onChange={onChange}
+                name='topping6'
+                type='checkbox'
+              />
+            </label>
+          </div>
+          <label>Special Instructions:
+            <input
+              id='special-text' 
+              name='special'
+              type='text'
+              placeholder='Enter any special instructions'
+              value={values.special}
+              onChange={onChange}
+            />
+          </label>
+          <button id='order-button' disabled={disabled}>Submit Order</button>
+        </div>
+      </form>
+    </>
+  )
+
+}

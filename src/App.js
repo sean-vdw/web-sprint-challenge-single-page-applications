@@ -3,9 +3,9 @@ import ReactDOM from 'react-router-dom';
 import { Route, Link, useHistory } from 'react-router-dom';
 import axios from "axios";
 
+//Import Components
 
-
-const initialOrder = {
+const initialFormValues = {
   name: '',
   size: '',
   sauce: '',
@@ -19,30 +19,32 @@ const initialOrder = {
 }
 
 const App = () => {
-  const [orders, setOrders] = useState(initialOrder);
+  const [orders, setOrders] = useState([]);
+  const [formValues, setFormValues] = useState(initialFormValues);
   const history = useHistory();
 
-  const updateOrder = (inputName, inputValue) => {
-    setOrders({
-      ...orders,
+  const updateForm = (inputName, inputValue) => {
+    setFormValues({
+      ...formValues,
       [inputName]: inputValue
     });
   }
 
   const submitForm = () => {
     const newOrder = {
-      name: orders.name.trim(),
-      size: orders.size,
-      sauce: orders.sauce,
-      topping1: orders.topping1,
-      topping2: orders.topping2,
-      topping3: orders.topping3,
-      topping4: orders.topping4,
-      topping5: orders.topping5,
-      topping6: orders.topping6,
-      special: orders.special.trim()
+      name: formValues.name.trim(),
+      size: formValues.size,
+      sauce: formValues.sauce,
+      topping1: formValues.topping1,
+      topping2: formValues.topping2,
+      topping3: formValues.topping3,
+      topping4: formValues.topping4,
+      topping5: formValues.topping5,
+      topping6: formValues.topping6,
+      special: formValues.special.trim()
     }
     setOrders(orders.concat(newOrder));
+    setFormValues(initialFormValues);
   }
 
   return (
